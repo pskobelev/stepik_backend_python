@@ -3,14 +3,13 @@ from django.shortcuts import render, redirect
 DBFILE = './words_list.txt'
 
 
-# Create your views here.
 def index(request):
-    """Index"""
+    """Index page"""
     return render(request, 'index.html')
 
 
 def add_word(request):
-    """Add words to the list of words"""
+    """Func add words to the list of words"""
     if request.method == 'POST':
         _object = request.POST
         add_to_file(_object)
@@ -19,8 +18,8 @@ def add_word(request):
 
 
 def add_to_file(_object):
-    """Add new pair words to FILE"""
-    with open(DBFILE, 'a', encoding='UTF-8') as f:
+    """write data to file"""
+    with open(DBFILE, 'a+', encoding='UTF-8') as f:
         key = _object['word1']
         value = _object['word2']
         f.write(f'{key} - {value}\n')
