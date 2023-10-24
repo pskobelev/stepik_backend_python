@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Words List
+{% endblock %}
+
+{% block content %}
+    <h2>Words Dictionary</h2>
+
+    <table class="words_list">
+        <thead>
+        <tr>
+            <th scope="col">Word</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        {% for key, value in words.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% empty %}
+            <h5>List of words it's empty.</h5>
+        {% endfor %}
+
+    </table>
+
+
+
+{% endblock %}

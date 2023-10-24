@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    Add words
+{% endblock %}
+{% block content %}
+    <h2>Add new Words</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div style="display: compact; justify-content: center;">
+            <div style="width: 80%;">
+                <label for="word1">Word 1:</label>
+                <input type="text" id="word1" name="word1">
+                <br>
+                <label for="word2">Word 2:</label>
+                <input type="text" id="word2" name="word2">
+                <br>
+                <button type="submit">Add</button>
+                <button type="reset">Clear</button>
+            </div>
+
+        </div>
+    </form>
+{% endblock %}
