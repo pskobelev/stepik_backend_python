@@ -6,11 +6,11 @@
     <h2>Add new Words</h2>
     <form method="post" action="">
         {% csrf_token %}
-        <label for="word1">Word 1:</label>
-        <input type="text" id="word1" name="word1">
+        <label for="word">Word:</label>
+        <input type="text" id="word" name="word">
         <br>
-        <label for="word2">Word 2:</label>
-        <input type="text" id="word2" name="word2">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description">
         <br>
         <button type="submit">Add</button>
         <button type="reset">Clear</button>

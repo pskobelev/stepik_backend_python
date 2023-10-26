@@ -7,12 +7,12 @@
 {% block content %}
     <h2>Words Dictionary</h2>
     <table class="words_list" title="table">
-        <th>word1</th>
-        <th>word2</th>
-        {% for key, value in words.items %}
+        <th>Word</th>
+        <th>Description</th>
+        {% for i in words %}
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ value }}</td>
+                <td>{{ i.word }}</td>
+                <td>{{ i.description }}</td>
             </tr>
         {% empty %}
             ¯\_(ツ)_/¯ list is empty.
