@@ -12,8 +12,6 @@ urlpatterns = [
     path('add_word', views.add_word, name='add_word'),
     path('words_list/', views.list_words, name='words_list'),
     path('words_list', views.list_words, name='words_list'),
-    path('add_fuel', views.add_fuel, name='add_fuel'),
-    path('add_fuel/', views.add_fuel, name='add_fuel'),
     path('success', views.success_page, name='success'),
     path('success/', views.success_page, name='success'),
 ]
