@@ -4,6 +4,7 @@
 {% endblock %}
 {% block content %}
     <h2>Add new Words</h2>
+    <div>
     <form method="post" action="">
         {% csrf_token %}
         <label for="word">Word:</label>
@@ -15,4 +16,5 @@
         <button type="submit">Add</button>
         <button type="reset">Clear</button>
     </form>
+    </div>
 {% endblock %}
