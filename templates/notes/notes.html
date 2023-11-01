@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Notes | {{ user }}
+{% endblock %}
+
+{% block content %}
+{% for note in notes %}
+<p class="my-note">{{ note.text }}</p>
+{% endfor %}
+{% endblock %}

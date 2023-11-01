@@ -5,16 +5,16 @@
 {% block content %}
     <h2>Add new Words</h2>
     <div>
-    <form method="post" action="">
-        {% csrf_token %}
-        <label for="word">Word:</label>
-        <input type="text" id="word" name="word">
-        <br>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description">
-        <br>
-        <button type="submit">Add</button>
-        <button type="reset">Clear</button>
-    </form>
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="word">Word:</label>
+            <input type="text" id="word" name="word">
+            <br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+            <br>
+            <button type="submit">Add</button>
+            <button type="reset">Clear</button>
+        </form>
     </div>
 {% endblock %}

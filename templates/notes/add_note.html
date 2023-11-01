@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<title>Добавить заметку</title>
+<h1>Добавить заметку</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>
+        <input name="note-text" placeholder="add some note plz">
+    </label>
+    <button type="submit">Добавить</button>
+</form>
+
+{% endblock %}
