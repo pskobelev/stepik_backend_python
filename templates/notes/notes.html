@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Notes | {{ user }}
+    Notes | {{ user }}
 {% endblock %}
 
 {% block content %}
-{% for note in notes %}
-<p class="my-note">{{ note.text }}</p>
-{% endfor %}
+    {% for note in notes %}
+        <p class="my-note">{{ note.text }}</p>
+    {% endfor %}
 {% endblock %}
