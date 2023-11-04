@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 
 from dictionary.views import success_page
-from fuelcalc.forms import AddFuelForm
-from fuelcalc.models import Fuel
+from fuelcalc.models import Fuel, MyFuelForm
 
 
 # Create your views here.
@@ -23,8 +22,9 @@ def add_fuel(request):
 
         return redirect(success_page)
 
-    history = fuel_history()
-    return render(request, "add_fuel.html", context={"history": history})
+    queryset = Fuel.objects.all().order_by("-date_fuel")
+    context = {"history": queryset}
+    return render(request, "add_fuel.html", context=context)
 
 
 def calculate_liters_per_100km(fuel: int, distance: int) -> float:
@@ -32,32 +32,18 @@ def calculate_liters_per_100km(fuel: int, distance: int) -> float:
     return round((int(fuel) / int(distance)) * 100, 2)
 
 
-def fuel_history():
-    """fuel_history"""
-    data = Fuel.objects.all().order_by("-date_fuel")
-    return data
-
-
 def add_fuel_over_forms(request):
     """add fuel"""
     if request.method == "POST":
-        form = AddFuelForm(request.POST)
+        form = MyFuelForm(request.POST)
         if form.is_valid():
-            liters = form.cleaned_data["liters"]
-            cost = form.cleaned_data["cost"]
-            distance = form.cleaned_data["distance"]
-
-            fuel_consumption = calculate_liters_per_100km(liters, distance)
-            data = Fuel(
-                fuel=liters,
-                cost=cost,
-                distance=distance,
-                fuel_consumption=fuel_consumption,
+            fuel = form.save(commit=False)
+            fuel.fuel_consumption = calculate_liters_per_100km(
+                int(form.cleaned_data["fuel"]), form.cleaned_data["distance"]
             )
-            data.save()
-
+            fuel.save()
             return redirect("success")
     else:
-        form = AddFuelForm()
-
-    return render(request, "form.html", {"form": form})
+        form = MyFuelForm()
+    queryset = Fuel.objects.all().order_by("-date_fuel")
+    return render(request, "form.html", {"form": form, "history": queryset})

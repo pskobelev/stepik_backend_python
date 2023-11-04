@@ -1,23 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Form example
+    Form example
 {% endblock %}
 
 {% block content %}
-<h3>New form</h3>
-<form action="" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.help_text }}
-        {{ field.label_tag }} {{ field }}
-    </div>
-    {% endfor %}
+    <h4>.add fuel</h4>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <br>
+        <input type="submit" value="Add Fuel">
+    </form>
     <br>
-    <input type="submit" value="Add Fuel">
-</form>
+    <h4>.history</h4>
+    <table>
+        <caption>Table</caption>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Liters</th>
+            <th>Distance, km</th>
+            <th>L/100km</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for elem in history %}
+            <tr>
+                <td>{{ elem.date_fuel }}</td>
+                <td>{{ elem.fuel }}</td>
+                <td>{{ elem.distance }}</td>
+                <td>{{ elem.fuel_consumption }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% for elem in history %}
+        <p>{{ elem }}, расход топлива {{ elem.fuel_consumption }} литров на 100 км.</p>
+    {% endfor %}
+
 
 
 {% endblock %}
+
