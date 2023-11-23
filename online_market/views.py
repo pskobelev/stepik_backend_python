@@ -47,7 +47,9 @@ class GoodsAPI(APIView):
     def post(self, request):
         tokens_id = list(t.token_id for t in (Token.objects.all()))
 
-        if (
+        if not request.GET.get("token", False):
+            return HttpResponse("Need token", status=HTTP_401_UNAUTHORIZED)
+        elif (
             request.GET.get("token", False)
             and request.GET.get("token", False) in tokens_id
         ):
@@ -55,7 +57,5 @@ class GoodsAPI(APIView):
             if new.is_valid():
                 new.save()
                 return Response("Add", status=status.HTTP_201_CREATED)
-        elif request.GET.get("token", False):
-            return HttpResponse("Wrong token", status=HTTP_401_UNAUTHORIZED)
         else:
-            return HttpResponse("Need token", status=HTTP_401_UNAUTHORIZED)
+            return HttpResponse("Wrong token", status=HTTP_401_UNAUTHORIZED)
