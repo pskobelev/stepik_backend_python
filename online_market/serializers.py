@@ -8,12 +8,14 @@ class GoodsSerializer(serializers.ModelSerializer):
         model = Good
         fields = "__all__"
 
-    def validate_price(self, value):
+    @staticmethod
+    def validate_price(value):
         if value <= 0:
             raise serializers.ValidationError("Price must be more than 0")
         return value
 
-    def validate_amount(self, value):
+    @staticmethod
+    def validate_amount(value):
         if value <= 0:
             raise serializers.ValidationError("Amount must be more than 0")
         return value
